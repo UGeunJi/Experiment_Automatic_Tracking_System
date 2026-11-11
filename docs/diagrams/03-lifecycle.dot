@@ -1,0 +1,19 @@
+digraph G {
+ graph [bgcolor="#F5F7FB", pad="0.45", nodesep="0.35", ranksep="0.48", fontname="Noto Sans CJK KR", fontsize=22, fontcolor="#142D4E", labelloc=t];
+ node [shape=box, style="rounded,filled", fillcolor="#FFFFFF", color="#CAD5E5", penwidth=1.3, fontname="Noto Sans CJK KR", fontsize=14, fontcolor="#142D4E", margin="0.22,0.16"];
+ edge [color="#55769F", penwidth=1.5, arrowsize=0.7, fontname="Noto Sans CJK KR", fontsize=11, fontcolor="#48617E"];
+label="RUN LIFECYCLE  /  Notion에 언제 나타날까?";
+ a [label="tracker.py run 또는 웹 버튼"];
+ b [label="RUNNING
+로컬 보관 → MLflow",fillcolor="#E8EEFF"];
+ c [label="실험 프로세스 / 웹 작업 종료",shape=diamond,style=filled];
+ ok [label="FINISHED",fillcolor="#DDF4EB"];
+ fail [label="FAILED / KILLED
+잡을 수 있는 오류·중단",fillcolor="#FFE4E5"];
+ n [label="종료 결과를 Notion 행으로 반영
+RunID 검색 → 생성 또는 수정",fillcolor="#FFF0D5"];
+ crash [label="강제 종료·정전
+RUNNING이 남을 수 있음",fillcolor="#F0E9FA"];
+ a -> b -> c; c -> ok [label="성공"]; c -> fail [label="실패 / 중단"];
+ ok -> n; fail -> n; b -> crash [style=dashed,label="종료 처리 불가"];
+}

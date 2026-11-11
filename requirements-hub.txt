@@ -1,0 +1,2 @@
+# Needed only on the central PC. Tracking/sync scripts use standard library.
+mlflow==3.18.0

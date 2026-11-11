@@ -1,0 +1,28 @@
+digraph G {
+ graph [bgcolor="#F5F7FB", pad="0.45", nodesep="0.35", ranksep="0.48", fontname="Noto Sans CJK KR", fontsize=22, fontcolor="#142D4E", labelloc=t];
+ node [shape=box, style="rounded,filled", fillcolor="#FFFFFF", color="#CAD5E5", penwidth=1.3, fontname="Noto Sans CJK KR", fontsize=14, fontcolor="#142D4E", margin="0.22,0.16"];
+ edge [color="#55769F", penwidth=1.5, arrowsize=0.7, fontname="Noto Sans CJK KR", fontsize=11, fontcolor="#48617E"];
+label="EXPERIMENT HUB  /  전체 구조";
+ subgraph cluster_sources {label="실행 환경 · VS Code는 접속 도구"; fontsize=15; color="#D4DEEB"; style=rounded;
+ service [label="service
+Windows · 웹 Auto Seg 버튼",fillcolor="#E3F5EF"];
+ local [label="local
+WSL Linux · tracker.py run"];
+ ai1 [label="ai-1
+SSH 원격 서버 · tracker.py run"];
+ ai2 [label="ai-2
+SSH 원격 서버 · tracker.py run"];
+ }
+ outbox [label="웹 요청별 JSON outbox
+service_worker.py → SQLite",fillcolor="#E3F5EF"];
+ queues [label="각 환경의 로컬 SQLite 큐
+실행 중 전송 + sync worker 재시도",fillcolor="#E8EEFF"];
+ hub [label="Windows 중앙 PC · MLflow
+RUNNING / FINISHED / FAILED / KILLED",fillcolor="#DCE9FF"];
+ sync [label="sync_notion.py · 30초 간격
+종료 결과만 선택 · RunID로 갱신",fillcolor="#FFF0D5"];
+ notion [label="Notion · AI 실험 기록
+Env / Project / Dice / 소요 시간",fillcolor="#FFF0D5"];
+ service -> outbox; local -> queues; ai1 -> queues; ai2 -> queues;
+ outbox -> hub; queues -> hub; hub -> sync; sync -> notion;
+}

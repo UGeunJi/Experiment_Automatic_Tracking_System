@@ -1,0 +1,21 @@
+digraph G {
+ graph [bgcolor="#F5F7FB", pad="0.45", nodesep="0.35", ranksep="0.48", fontname="Noto Sans CJK KR", fontsize=22, fontcolor="#142D4E", labelloc=t];
+ node [shape=box, style="rounded,filled", fillcolor="#FFFFFF", color="#CAD5E5", penwidth=1.3, fontname="Noto Sans CJK KR", fontsize=14, fontcolor="#142D4E", margin="0.22,0.16"];
+ edge [color="#55769F", penwidth=1.5, arrowsize=0.7, fontname="Noto Sans CJK KR", fontsize=11, fontcolor="#48617E"];
+label="SETUP  /  처음 한 번 설정";
+ a [label="01  Windows 중앙 저장소 준비
+코드 배치 · Python 가상환경 · MLflow"];
+ b [label="02  네트워크 확인
+서버 → Windows:5000 /health"];
+ c [label="03  Notion 표 + 내부 연결
+14개 속성 · 페이지 사용 권한"];
+ d [label="04  중앙 PC .env
+MLflow 주소 · 토큰 · 데이터베이스 ID"];
+ e [label="05  각 실행 환경 init
+local / ai-1 / ai-2 각각 구분"];
+ f [label="06  지속 worker 실행
+tracker sync · service worker · Notion sync"];
+ g [label="07  테스트 후 실제 실험
+MLflow RUNNING → 종료 → Notion",fillcolor="#DDF4EB"];
+ a -> b -> c -> d -> e -> f -> g;
+}
